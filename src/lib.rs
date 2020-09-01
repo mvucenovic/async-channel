@@ -255,8 +255,8 @@ impl<T> Sender<T> {
 
                     // If the capacity is larger than 1, notify another blocked send operation.
                     match self.channel.queue.capacity() {
-                        Some(1) => {}
-                        Some(_) | None => self.channel.send_ops.notify(1),
+                        Some(1) | None => {}
+                        Some(_) => self.channel.send_ops.notify(1),
                     }
                 }
             }
